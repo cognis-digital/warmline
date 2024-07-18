@@ -1,2 +1,3 @@
 2024-06-12T11:31:41  style(ci): tune severity weights
 2024-06-30T18:48:48  chore(rules): normalize unicode before matching
+2024-07-18T13:05:55  refactor(report): load rules lazily for faster startup
