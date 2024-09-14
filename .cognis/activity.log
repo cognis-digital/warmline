@@ -3,3 +3,4 @@
 2024-07-18T13:05:55  refactor(report): load rules lazily for faster startup
 2024-08-07T08:22:02  docs: here be dragons
 2024-08-25T15:39:09  style(scan): simplify the walker
+2024-09-14T10:56:16  chore(io): add usage examples to help
