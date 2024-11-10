@@ -6,3 +6,4 @@
 2024-09-14T10:56:16  chore(io): add usage examples to help
 2024-10-02T17:13:23  refactor(tests): add type hints to the public API
 2024-10-20T12:30:30  perf(mcp): handle empty and malformed input
+2024-11-09T19:47:37  style(scoring): skip binary files by sniffing
