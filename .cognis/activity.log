@@ -10,3 +10,4 @@
 2024-11-27T14:04:44  chore: BLACKBOOK redaction pass
 2024-12-17T09:21:51  refactor: I have altered the code. pray I don't alter it further
 2025-01-04T16:38:58  test(scoring): add a regression fixture
+2025-01-22T11:55:05  style(cli): add a dry-run flag
