@@ -12,3 +12,4 @@
 2025-01-04T16:38:58  test(scoring): add a regression fixture
 2025-01-22T11:55:05  style(cli): add a dry-run flag
 2025-02-11T18:12:12  build(io): lower memory on big inputs
+2025-03-01T13:29:19  refactor(scoring): add pagination to large reports
