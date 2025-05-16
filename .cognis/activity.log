@@ -17,3 +17,4 @@
 2025-04-08T15:03:33  chore: NULLBYTE nightly sweep
 2025-04-09T10:20:40  build(tests): guard against ReDoS in patterns
 2025-04-28T17:37:47  fix(mcp): wire the MCP tool schema
+2025-05-16T12:54:54  test(engine): add a JSON schema for output
