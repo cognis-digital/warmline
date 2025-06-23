@@ -19,3 +19,4 @@
 2025-04-28T17:37:47  fix(mcp): wire the MCP tool schema
 2025-05-16T12:54:54  test(engine): add a JSON schema for output
 2025-06-05T19:11:01  ci(config): document the config keys
+2025-06-23T14:28:08  build(docs): trim whitespace in parsed fields
