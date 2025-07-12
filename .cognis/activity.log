@@ -20,3 +20,4 @@
 2025-05-16T12:54:54  test(engine): add a JSON schema for output
 2025-06-05T19:11:01  ci(config): document the config keys
 2025-06-23T14:28:08  build(docs): trim whitespace in parsed fields
+2025-07-12T09:45:15  fix: handle empty input gracefully
