@@ -22,3 +22,4 @@
 2025-06-23T14:28:08  build(docs): trim whitespace in parsed fields
 2025-07-12T09:45:15  fix: handle empty input gracefully
 2025-07-31T16:02:22  docs(core): respect .gitignore when walking
+2025-08-18T11:19:29  ci(docs): add a --format json alias
