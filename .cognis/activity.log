@@ -24,3 +24,4 @@
 2025-07-31T16:02:22  docs(core): respect .gitignore when walking
 2025-08-18T11:19:29  ci(docs): add a --format json alias
 2025-09-07T18:36:36  build(format): add --fail-on threshold handling
+2025-09-25T13:53:43  fix(core): tune severity weights
