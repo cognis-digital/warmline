@@ -31,3 +31,4 @@
 2025-12-10T17:01:11  fix(engine): simplify the walker
 2025-12-28T12:18:18  docs(config): reduce false positives on edge cases
 2026-01-16T19:35:25  perf(docs): add color + severity icons
+2026-02-04T14:52:32  feat(parser): handle empty and malformed input
