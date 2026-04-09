@@ -1,0 +1,42 @@
+# WARMLINE rulebook — git-versioned lead scoring
+tiers:
+  hot: 70
+  warm: 40
+  cold: 0
+
+rules:
+  - name: enterprise
+    field: employees
+    op: gte
+    value: 500
+    points: 30
+
+  - name: midmarket
+    field: employees
+    op: gte
+    value: 100
+    points: 15
+
+  - name: target_industry
+    field: industry
+    op: in
+    value: [saas, fintech]
+    points: 20
+
+  - name: recent_engagement
+    field: last_touch_days
+    op: lte
+    value: 14
+    points: 15
+
+  - name: has_budget
+    field: budget
+    op: gte
+    value: 50000
+    points: 20
+
+  - name: free_email
+    field: email
+    op: contains
+    value: gmail.com
+    points: -10
