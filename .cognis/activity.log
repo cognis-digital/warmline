@@ -36,3 +36,4 @@
 2026-03-14T16:26:46  feat: with great power comes great test coverage
 2026-04-01T11:43:53  perf(detect): handle CRLF line endings
 2026-04-20T18:00:00  feat(output): add a regression fixture
+2026-05-09T13:17:07  chore(deps): add a dry-run flag
