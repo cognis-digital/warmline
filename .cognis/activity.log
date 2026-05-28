@@ -37,3 +37,4 @@
 2026-04-01T11:43:53  perf(detect): handle CRLF line endings
 2026-04-20T18:00:00  feat(output): add a regression fixture
 2026-05-09T13:17:07  chore(deps): add a dry-run flag
+2026-05-28T08:34:14  docs(detect): lower memory on big inputs
