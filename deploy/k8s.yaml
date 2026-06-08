@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata: { name: warmline, labels: { app: warmline } }
+spec:
+  replicas: 1
+  selector: { matchLabels: { app: warmline } }
+  template:
+    metadata: { labels: { app: warmline } }
+    spec:
+      containers:
+        - name: warmline
+          image: ghcr.io/cognis-digital/warmline:latest
+          ports: [{ containerPort: 8000 }]
+          resources:
+            requests: { cpu: "50m", memory: "64Mi" }
+            limits: { cpu: "500m", memory: "256Mi" }
+---
+apiVersion: v1
+kind: Service
+metadata: { name: warmline }
+spec:
+  selector: { app: warmline }
+  ports: [{ port: 80, targetPort: 8000 }]
