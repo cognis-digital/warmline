@@ -16,7 +16,7 @@
 </div>
 
 ```bash
-pip install cognis-warmline
+pip install "git+https://github.com/cognis-digital/warmline.git"
 warmline scan .            # → prioritized findings in seconds
 ```
 
@@ -53,7 +53,7 @@ A self-hostable, git-versioned lead-scoring engine — every score change is a r
 ## Quick start
 
 ```bash
-pip install cognis-warmline
+pip install "git+https://github.com/cognis-digital/warmline.git"
 warmline --version
 warmline scan .                       # scan current project
 warmline scan . --format json         # machine-readable
