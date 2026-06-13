@@ -20,6 +20,31 @@ pip install cognis-warmline
 warmline scan .            # → prioritized findings in seconds
 ```
 
+## Usage — step by step
+
+1. **Install** the CLI (console script `warmline`):
+   ```bash
+   pip install cognis-warmline
+   ```
+2. **Score & rank leads** against a YAML rulebook (leads file may be `.csv`, `.json`, or `.yaml`):
+   ```bash
+   warmline score --rules rulebook.yaml --leads leads.csv
+   ```
+3. **Read the ranked queue** as JSON for a CRM sync or pipeline, and trim to the top N:
+   ```bash
+   warmline score -r rulebook.yaml -l leads.json --format json --top 25 > queue.json
+   ```
+4. **Gate on a tier or score** — exit 2 if no lead reaches the threshold:
+   ```bash
+   warmline score -r rulebook.yaml -l leads.csv --min-tier hot
+   warmline score -r rulebook.yaml -l leads.csv --min-score 80
+   ```
+5. **Automate in CI** — fail the job unless at least one lead is hot:
+   ```yaml
+   - run: pip install cognis-warmline
+   - run: warmline score -r rulebook.yaml -l leads.csv --format json --min-tier hot
+   ```
+
 ## Contents
 
 - [Why warmline?](#why) · [Features](#features) · [Quick start](#quick-start) · [Example](#example) · [Architecture](#architecture) · [AI stack](#ai-stack) · [How it compares](#how-it-compares) · [Integrations](#integrations) · [Install anywhere](#install-anywhere) · [Related](#related) · [Contributing](#contributing)
