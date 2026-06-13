@@ -16,9 +16,15 @@
 </div>
 
 ```bash
-pip install cognis-warmline
+pip install "git+https://github.com/cognis-digital/warmline.git"
 warmline scan .            # → prioritized findings in seconds
 ```
+
+<!-- cognis:layman:start -->
+## What is this?
+
+Warmline is a lead-scoring tool that helps sales teams decide which potential customers to contact first. You describe your ideal customer in a simple text file — things like company size, industry, or recent engagement — and Warmline reads your list of leads, gives each one a score, and hands back a ranked queue showing who is hottest. It works from the command line or inside automated pipelines, so your sales reps always see the highest-priority prospects at the top without manual sorting.
+<!-- cognis:layman:end -->
 
 ## Contents
 
@@ -50,10 +56,56 @@ A self-hostable, git-versioned lead-scoring engine — every score change is a r
 <div align="right"><a href="#top">↑ back to top</a></div>
 
 <a name="quick-start"></a>
+<!-- cognis:domains:start -->
+## Domains
+
+**Primary domain:** Revenue & Business  ·  **JTF MERIDIAN division:** FOUNDRY · MASON
+
+**Topics:** `cognis` `business` `saas` `revenue-ops`
+
+Part of the **Cognis Neural Suite** — 300+ source-available tools organized across 12 domains under the JTF MERIDIAN command structure. See the [suite on GitHub](https://github.com/cognis-digital) and [jtf-meridian](https://github.com/cognis-digital/jtf-meridian) for how the pieces fit together.
+<!-- cognis:domains:end -->
+
+<!-- cognis:install:start -->
+## Install
+
+`warmline` is source-available (not published to PyPI) — every method below installs
+straight from GitHub. Pick whichever you prefer; the one-line scripts auto-detect
+the best tool available on your machine.
+
+**One-liner (Linux / macOS):**
+```sh
+curl -fsSL https://raw.githubusercontent.com/cognis-digital/warmline/HEAD/install.sh | sh
+```
+
+**One-liner (Windows PowerShell):**
+```powershell
+irm https://raw.githubusercontent.com/cognis-digital/warmline/HEAD/install.ps1 | iex
+```
+
+**Or install manually — any one of:**
+```sh
+pipx install "git+https://github.com/cognis-digital/warmline.git"     # isolated (recommended)
+uv tool install "git+https://github.com/cognis-digital/warmline.git"  # uv
+pip install "git+https://github.com/cognis-digital/warmline.git"      # pip
+```
+
+**From source:**
+```sh
+git clone https://github.com/cognis-digital/warmline.git
+cd warmline && pip install .
+```
+
+Then run:
+```sh
+warmline --help
+```
+<!-- cognis:install:end -->
+
 ## Quick start
 
 ```bash
-pip install cognis-warmline
+pip install "git+https://github.com/cognis-digital/warmline.git"
 warmline --version
 warmline scan .                       # scan current project
 warmline scan . --format json         # machine-readable

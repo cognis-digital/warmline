@@ -1,4 +1,4 @@
-"""Smoke tests for WARMLINE — import core, run on the demo, assert behavior."""
+﻿"""Smoke tests for WARMLINE â€” import core, run on the demo, assert behavior."""
 import os
 import sys
 
@@ -70,18 +70,20 @@ def test_demo_scoring_and_ranking():
     top = ranked[0]
     assert top.name == "Globex"
     assert top.tier == "hot"
-    # enterprise(30)+target_industry(20)+recent(15)+budget(20) = 85
-    assert top.score == 85
+    # enterprise(30)+midmarket(15)+target_industry(20)+recent(15)+budget(20) = 100
+    assert top.score == 100
     assert "enterprise" in top.matched
+    assert "midmarket" in top.matched
 
     # Scores must be sorted descending.
     scores = [s.score for s in ranked]
     assert scores == sorted(scores, reverse=True)
 
     by_name = {s.name: s for s in ranked}
-    # gmail penalty pushes the solo founder to cold.
+    # gmail penalty reduces Pied Piper's score; still cold.
     assert by_name["Pied Piper"].tier == "cold"
-    assert by_name["Pied Piper"].score == 5  # recent(15) - free_email(10)
+    # target_industry(20) + recent_engagement(15) - free_email(10) = 25
+    assert by_name["Pied Piper"].score == 25
 
 
 def test_operators_numeric_and_in():
@@ -144,3 +146,4 @@ def test_cli_unknown_tier_gate():
 def test_cli_missing_file():
     rc = main(["score", "-r", "/no/such/rules.yaml", "-l", LEADS])
     assert rc == 1
+
