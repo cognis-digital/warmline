@@ -35,6 +35,7 @@ from __future__ import annotations
 import csv
 import io
 import json
+import math as _math
 import re
 from dataclasses import dataclass, field
 from typing import Any, Iterable
@@ -362,6 +363,13 @@ def load_rulebook(text: str) -> Rulebook:
         pts = _to_number(r["points"])
         if pts is None:
             raise RulebookError(f"rule #{i + 1} 'points' must be numeric")
+        if not _math.isfinite(float(pts)):
+            raise RulebookError(f"rule #{i + 1} 'points' must be a finite number")
+        # ops that need a comparison value require 'value' to be present
+        if op != "exists" and "value" not in r:
+            raise RulebookError(
+                f"rule #{i + 1} (op '{op}') is missing required 'value'"
+            )
         rules.append(
             Rule(
                 name=str(r.get("name") or r["field"]),
@@ -384,8 +392,16 @@ def load_rulebook(text: str) -> Rulebook:
 
 
 def load_rulebook_file(path: str) -> Rulebook:
-    with open(path, "r", encoding="utf-8") as fh:
-        return load_rulebook(fh.read())
+    try:
+        with open(path, "r", encoding="utf-8") as fh:
+            text = fh.read()
+    except UnicodeDecodeError as exc:
+        raise RulebookError(
+            f"rulebook file '{path}' is not valid UTF-8: {exc}"
+        ) from exc
+    except OSError as exc:
+        raise FileNotFoundError(exc.errno, exc.strerror, path) from exc
+    return load_rulebook(text)
 
 
 def _coerce_lead_values(row: dict) -> dict:
@@ -418,7 +434,15 @@ def load_leads(text: str, fmt: str | None = None) -> list[dict]:
             data = data.get("leads", [])
         if not isinstance(data, list):
             raise ValueError("JSON leads must be a list of objects")
-        return [_coerce_lead_values(d) for d in data if isinstance(d, dict)]
+        result = []
+        for idx, d in enumerate(data):
+            if not isinstance(d, dict):
+                raise ValueError(
+                    f"JSON lead #{idx + 1} is not an object "
+                    f"(got {type(d).__name__})"
+                )
+            result.append(_coerce_lead_values(d))
+        return result
 
     if fmt == "csv":
         reader = csv.DictReader(io.StringIO(text))
@@ -442,8 +466,16 @@ def load_leads_file(path: str) -> list[dict]:
         fmt = "csv"
     elif low.endswith((".yaml", ".yml")):
         fmt = "yaml"
-    with open(path, "r", encoding="utf-8") as fh:
-        return load_leads(fh.read(), fmt=fmt)
+    try:
+        with open(path, "r", encoding="utf-8") as fh:
+            text = fh.read()
+    except UnicodeDecodeError as exc:
+        raise ValueError(
+            f"leads file '{path}' is not valid UTF-8: {exc}"
+        ) from exc
+    except OSError as exc:
+        raise FileNotFoundError(exc.errno, exc.strerror, path) from exc
+    return load_leads(text, fmt=fmt)
 
 
 # --------------------------------------------------------------------------

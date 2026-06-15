@@ -136,6 +136,10 @@ def main(argv=None) -> int:
         parser.print_help()
         return 0
 
+    if args.top < 0:
+        print(f"{TOOL_NAME}: --top must be a non-negative integer", file=sys.stderr)
+        return 1
+
     try:
         rb = load_rulebook_file(args.rules)
         leads = load_leads_file(args.leads)
@@ -147,6 +151,9 @@ def main(argv=None) -> int:
         return 1
     except (ValueError, json.JSONDecodeError) as exc:
         print(f"{TOOL_NAME}: could not parse leads: {exc}", file=sys.stderr)
+        return 1
+    except Exception as exc:
+        print(f"{TOOL_NAME}: unexpected error: {exc}", file=sys.stderr)
         return 1
 
     scored = rank(score_leads(leads, rb))
