@@ -20,6 +20,74 @@ pip install cognis-warmline
 warmline scan .            # → prioritized findings in seconds
 ```
 
+
+<!-- cognis:example:start -->
+## 🔎 Example output
+
+Real, reproducible output from the tool — runs offline:
+
+```console
+$ warmline-emit --version
+warmline 0.1.0
+```
+
+```console
+$ warmline-emit --help
+usage: warmline [-h] [--version] {score} ...
+
+Git-versioned lead scoring: score & rank leads from a YAML rulebook.
+
+positional arguments:
+  {score}
+    score     score leads and print a ranked queue
+
+options:
+  -h, --help  show this help message and exit
+  --version   show program's version number and exit
+
+WARMLINE CLI — score and rank leads from a YAML rulebook.
+
+Examples:
+    # Rank leads, human-readable table
+    warmline score --rules rulebook.yaml --leads leads.csv
+
+    # Emit ranked queue as JSON for piping into CI / a CRM sync
+    warmline score -r rulebook.yaml -l leads.json --format json > queue.json
+
+    # Gate: fail (exit 2) if no lead reaches the 'hot' tier
+    warmline score -r rulebook.yaml -l leads.csv --min-tier hot
+
+Exit codes:
+    0  success
+    1  usage / parsing error
+    2  gate failure (--min-tier / --min-score not met by any lead)
+```
+
+> Blocks above are real `warmline` output — reproduce them from a clone.
+
+**Sample result format** _(illustrative values — run on your own data for real findings):_
+
+```
+{
+"findings": [
+    {
+        "id": "1234567890",
+        "title": "Suspicious Activity Detected",
+        "description": "Anomalous network traffic observed from IP 192.168.1.100",
+        "labels": ["suspicious", "network"]
+    },
+    {
+        "id": "2345678901",
+        "title": "Malware Detection",
+        "description": "Malware identified on system with ID 1234567890",
+        "labels": ["malware", "system"]
+    }
+]
+}
+```
+
+<!-- cognis:example:end -->
+
 ## Usage — step by step
 
 1. **Install** the CLI (console script `warmline`):

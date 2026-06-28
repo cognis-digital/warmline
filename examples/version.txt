@@ -1,0 +1,3 @@
+$ warmline-emit --version
+
+warmline 0.1.0
